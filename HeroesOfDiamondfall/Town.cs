@@ -9,7 +9,7 @@ using OpenTK;
 using HeroesOfDiamondfall.Buildings;
 
 namespace HeroesOfDiamondfall {
-	class Town : Base {
+	class Town : Base, Location {
 		static Texture Dirt = new Texture(@"Data\Dirt.png");
 		Building[,] Buildings = new Building[10, 10];
 

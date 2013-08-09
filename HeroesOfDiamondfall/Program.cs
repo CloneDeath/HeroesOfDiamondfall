@@ -21,11 +21,11 @@ namespace HeroesOfDiamondfall {
 			Initialize();
 			GraphicsManager.Start();
 		}
-		static Game game;
+		static World game;
 		static Stopwatch timer;
 
 		private static void Initialize() {
-			game = new Game();
+			game = new World();
 			timer = new Stopwatch();
 			timer.Start();
 		}

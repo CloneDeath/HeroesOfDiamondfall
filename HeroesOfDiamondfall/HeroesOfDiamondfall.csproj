@@ -71,7 +71,8 @@
     <Compile Include="Buildings\Blacksmith.cs" />
     <Compile Include="Buildings\House.cs" />
     <Compile Include="Dungeon.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="World.cs" />
     <Compile Include="Hero.cs" />
     <Compile Include="MainCanvas.cs" />
     <Compile Include="Program.cs" />
