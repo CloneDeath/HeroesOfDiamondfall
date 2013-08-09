@@ -6,8 +6,8 @@ using GLImp;
 using System.Drawing;
 
 namespace HeroesOfDiamondfall {
-	class Building {
-		internal void Draw(double x, double y, double width, double height) {
+	abstract class Building {
+		public virtual void Draw(double x, double y, double width, double height) {
 			GraphicsManager.DrawRectangle(x, y, width, height, Color.Blue);
 		}
 	}

@@ -14,6 +14,7 @@ namespace HeroesOfDiamondfall {
 
 			GraphicsManager.SetTitle("Heroes of Diamondfall");
 			GraphicsManager.SetResolution(800, 600);
+			GraphicsManager.EnableMipmap = false;
 
 			GraphicsManager.Update += new GraphicsManager.Updater(GraphicsManager_Update);
 
