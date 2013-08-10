@@ -39,10 +39,21 @@ namespace HeroesOfDiamondfall {
 					}
 				}
 			}
+
+			foreach (Hero hero in Heroes) {
+				hero.Draw(this.X + (hero.X * BuildingSize.X), this.Y + (hero.Y * BuildingSize.Y), BuildingSize.X, BuildingSize.Y);
+			}
 		}
 
-		public void Update() {
+		List<Hero> Heroes = new List<Hero>();
 
+		public void Update() {
+			Heroes.Clear();
+		}
+
+		Random rand = new Random();
+		public void AddHero(Hero hero) {
+			Heroes.Add(hero);
 		}
 	}
 }

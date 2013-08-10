@@ -32,8 +32,8 @@ namespace HeroesOfDiamondfall {
 
 		static void GraphicsManager_Update() {
 			if (timer.Elapsed.TotalSeconds > 1) {
-				timer.Elapsed.Subtract(new TimeSpan(0, 0, 1)); //subtract a second
 				game.Update();
+				timer.Restart();
 			}
 		}
 

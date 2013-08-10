@@ -5,9 +5,13 @@ using System.Text;
 
 namespace HeroesOfDiamondfall {
 	interface Location {
-		public string Name {
+		string Name {
 			get;
-			protected set;
+			set;
 		}
+
+		void Update();
+
+		void AddHero(Hero hero);
 	}
 }

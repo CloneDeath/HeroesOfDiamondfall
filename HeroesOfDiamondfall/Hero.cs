@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GLImp;
 
 namespace HeroesOfDiamondfall {
 	class Hero {
+		static Texture WariorTex = new Texture(@"Data\Warior.png");
+
 		public int X = 0;
 		public int Y = 0;
 
@@ -12,7 +15,7 @@ namespace HeroesOfDiamondfall {
 		public Location Destination;
 
 		public int Distance;
-		string Name;
+		public string Name;
 
 		static Random rand = new Random();
 
@@ -30,8 +33,33 @@ namespace HeroesOfDiamondfall {
 			if (Destination != CurrentLocation) {
 				if (--Distance <= 0) {
 					CurrentLocation = Destination;
+					if (Destination == world.Town) {
+						int pos = rand.Next(36); //Circle
+						if (pos < 10) {
+							this.Y = 0;
+							this.X = pos;
+						} else if (pos < 20) {
+							this.Y = 9;
+							this.X = pos - 10;
+						} else if (pos < 28) {
+							this.X = 0;
+							this.Y = pos - 19;
+						} else {
+							this.X = 9;
+							this.Y = pos - 27;
+						}
+					}
+				} else {
+					world.Wilderness.AddHero(this);
+					return;
 				}
 			}
+
+			CurrentLocation.AddHero(this);
+		}
+
+		public void Draw(double x, double y, double width, double height) {
+			WariorTex.Draw(x + ((rand.NextDouble() - 0.5) * width), y + ((rand.NextDouble() - 0.5) * height), width, height);
 		}
 	}
 }
