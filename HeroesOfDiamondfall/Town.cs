@@ -11,21 +11,17 @@ using HeroesOfDiamondfall.Buildings;
 namespace HeroesOfDiamondfall {
 	class Town : Base, Location {
 		static Texture Dirt = new Texture(@"Data\Dirt.png");
-		Building[,] Buildings = new Building[10, 10];
+		public Building[,] Buildings = new Building[10, 10];
 
 		public Town(Base parent) : base(parent) {
 			Array.Clear(Buildings, 0, Buildings.Length);
-			Buildings[0, 0] = new House();
-			Buildings[1, 0] = new Blacksmith();
-			Buildings[2, 0] = new Church();
-			Buildings[3, 0] = new MagicShop();
-			Buildings[4, 0] = new Shop();
+			Buildings[3, 7] = new House();
+			Buildings[1, 5] = new Blacksmith();
+			Buildings[9, 3] = new Church();
+			Buildings[7, 1] = new MagicShop();
+			Buildings[4, 4] = new Shop();
 
-			Buildings[0, 1] = new Road();
-			Buildings[1, 1] = new Road();
-			Buildings[2, 1] = new Road();
-			Buildings[3, 1] = new Road();
-			Buildings[4, 1] = new Road();
+			//Buildings[0, 1] = new Road();
 		}
 
 		public void Draw() {

@@ -17,22 +17,29 @@ namespace HeroesOfDiamondfall {
 			Town.SetPosition(10, 10);
 			Town.SetSize(500, 500);
 
+			Wilderness = new Dungeon(this, "Wilderness");
+			Wilderness.SetPosition(520, 10);
+			Wilderness.SetSize(270, 60);
+
 			for (int i = 0; i < 10; i++) {
 				Dungeon d = new Dungeon(this);
-				d.SetPosition(520, 30);
+				d.SetPosition(520, 70 + (i * 60));
+				d.SetSize(270, 60);
 				Dungeons.Add(d);
 			}
 			for (int i = 0; i < 10; i++) {
 				Heroes.Add(new Hero(this));
 			}
-			Wilderness = new Dungeon(this, "Wilderness");
-			Wilderness.SetPosition(520, 10);
-			Wilderness.SetSize(270, 60);
+			
 		}
 
 		public void Update() {
 			Town.Update();
 			Wilderness.Update();
+
+			foreach (Dungeon dung in Dungeons) {
+				dung.Update();
+			}
 
 			foreach (Hero hero in Heroes) {
 				hero.Update();

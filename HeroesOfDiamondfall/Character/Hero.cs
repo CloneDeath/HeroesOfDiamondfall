@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GLImp;
+using OpenTK;
+using HeroesOfDiamondfall.Character;
 
 namespace HeroesOfDiamondfall {
 	class Hero {
@@ -10,6 +12,10 @@ namespace HeroesOfDiamondfall {
 
 		public int X = 0;
 		public int Y = 0;
+
+		public Equipment Equipment = new Equipment();
+
+		public Vector2d Offset = new Vector2d();
 
 		public Location CurrentLocation;
 		public Location Destination;
@@ -20,6 +26,8 @@ namespace HeroesOfDiamondfall {
 		static Random rand = new Random();
 
 		public World world;
+
+		private NeedList Needs;
 		public Hero(World World) {
 			Name = "Hero #" + rand.Next(1000);
 			Distance = rand.Next(20) + 1;
@@ -27,10 +35,12 @@ namespace HeroesOfDiamondfall {
 
 			Destination = World.Town;
 			CurrentLocation = World.Wilderness;
+			Needs = new NeedList(this);
 		}
 
 		internal void Update() {
-			if (Destination != CurrentLocation) {
+			/* Segway */
+			if (CurrentLocation == world.Wilderness) {
 				if (--Distance <= 0) {
 					CurrentLocation = Destination;
 					if (Destination == world.Town) {
@@ -49,17 +59,24 @@ namespace HeroesOfDiamondfall {
 							this.Y = pos - 27;
 						}
 					}
+					CurrentLocation.AddHero(this);
+					return;
 				} else {
 					world.Wilderness.AddHero(this);
 					return;
 				}
 			}
 
+			/* Asthetic */
+			Offset = new Vector2d(rand.NextDouble() - 0.5, rand.NextDouble() - 0.5);
 			CurrentLocation.AddHero(this);
+
+			/* Resolve Needs */
+			Needs.GetNeed().Resolve();
 		}
 
 		public void Draw(double x, double y, double width, double height) {
-			WariorTex.Draw(x + ((rand.NextDouble() - 0.5) * width), y + ((rand.NextDouble() - 0.5) * height), width, height);
+			WariorTex.Draw(x + (Offset.X * width/2), y + (Offset.Y * height/2), width, height);
 		}
 	}
 }

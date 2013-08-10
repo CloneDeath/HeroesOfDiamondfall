@@ -39,13 +39,13 @@ namespace HeroesOfDiamondfall {
 
 		public void Update() {
 			Heroes.Clear();
-			herobox.Clear();
+			herobox.RemoveAllRows();
 		}
 
 
 		public void AddHero(Hero hero) {
 			Heroes.Add(hero);
-			herobox.AddRow(hero.Name + " - " + hero.Distance + "km", "", hero);
+			herobox.AddRow(hero.Name + ", " + hero.Destination.Name + " " + hero.Distance + "km away", "", hero);
 		}
 	}
 }
